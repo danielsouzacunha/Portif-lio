@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio - Daniel Rodrigo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(90deg, #000000, #1e3a8a, #000000);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .profile {
+            margin-bottom: 30px;
+        }
+
+        .profile-pic-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 20px;
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 5px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(30, 144, 255, 0.5);
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .profile-pic:hover {
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 25px rgba(30, 144, 255, 0.7);
+        }
+
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .profile-pic i {
+            font-size: 80px;
+            color: #1e3a8a;
+        }
+
+        .upload-text {
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #a0c4ff;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .profile-pic-container:hover .upload-text {
+            opacity: 1;
+        }
+
+        #file-input {
+            display: none;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #a0c4ff;
+            margin-bottom: 30px;
+        }
+
+        section {
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #a0c4ff;
+            border-bottom: 2px solid #1e3a8a;
+            padding-bottom: 10px;
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .skill {
+            background: rgba(30, 144, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(30, 144, 255, 0.5);
+        }
+
+        .contact {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .contact-item {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            padding: 20px;
+            background: rgba(30, 144, 255, 0.1);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            background: rgba(30, 144, 255, 0.2);
+        }
+
+        .contact-item i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #a0c4ff;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .contact-item a:hover {
+            color: #a0c4ff;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project {
+            background: rgba(30, 144, 255, 0.1);
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .project:hover {
+            transform: translateY(-5px);
+            background: rgba(30, 144, 255, 0.2);
+        }
+
+        .project i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #a0c4ff;
+        }
+
+        .project h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .project p {
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #1e3a8a;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #3b82f6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .contact {
+                flex-direction: column;
+            }
+            
+            .projects {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile">
+                <div class="profile-pic-container">
+                    <div class="profile-pic" onclick="document.getElementById('file-input').click()">
+                        <i class="fas fa-user"></i>
+                        <img id="profile-image" src="" alt="Foto de perfil">
+                    </div>
+                    <div class="upload-text">Clique para adicionar foto</div>
+                    <input type="file" id="file-input" accept="image/*">
+                </div>
+                <h1>Daniel Rodrigo de Souza Cunha</h1>
+                <p class="subtitle">Estudante de Desenvolvimento de Sistemas</p>
+            </div>
+        </header>
+
+        <section class="about">
+            <h2>Sobre Mim</h2>
+            <p>Tenho 15 anos e sou estudante do 1º ano de Desenvolvimento de Sistemas, apaixonado por tecnologia e programação.</p>
+            <p>Tenho conhecimento em Python e estou iniciando na área de JavaScript. Minhas principais habilidades incluem resolução de problemas e conhecimento básico de backend.</p>
+            
+            <div class="skills">
+                <div class="skill">Python</div>
+                <div class="skill">JavaScript</div>
+                <div class="skill">Resolução de Problemas</div>
+                <div class="skill">Backend Básico</div>
+            </div>
+        </section>
+
+        <section class="contact-info">
+            <h2>Contato</h2>
+            <div class="contact">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <a href="mailto:daniel.souza.cunha@escola.pr.gov.br">daniel.souza.cunha@escola.pr.gov.br</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <h3>Telefone</h3>
+                    <a href="tel:+5543984926082">(43) 98492-6082</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-instagram"></i>
+                    <h3>Instagram</h3>
+                    <a href="https://instagram.com/_souzad4n" target="_blank">@_souzad4n</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="projects-section">
+            <h2>Meus Projetos</h2>
+            <div class="projects">
+                <div class="project">
+                    <i class="fas fa-calculator"></i>
+                    <h3>Calculadora Python</h3>
+                    <p>Uma calculadora completa desenvolvida em Python com interface gráfica, capaz de realizar operações matemáticas básicas e avançadas.</p>
+                    <a href="#" class="btn">Ver Projeto</a>
+                </div>
+                <div class="project">
+                    <i class="fas fa-tasks"></i>
+                    <h3>Sistema de Tarefas</h3>
+                    <p>Sistema de gerenciamento de tarefas desenvolvido com JavaScript, permitindo adicionar, editar e excluir tarefas com armazenamento local.</p>
+                    <a href="#" class="btn">Ver Projeto</a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2023 Daniel Rodrigo de Souza Cunha. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Efeito de digitação para o título
+        document.addEventListener('DOMContentLoaded', function() {
+            const title = document.querySelector('h1');
+            const text = title.textContent;
+            title.textContent = '';
+            
+            let i = 0;
+            function typeWriter() {
+                if (i < text.length) {
+                    title.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
+            }
+            
+            setTimeout(typeWriter, 500);
+            
+            // Efeito de fade-in para as seções
+            const sections = document.querySelectorAll('section');
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(section);
+            });
+
+            // Upload de imagem
+            const fileInput = document.getElementById('file-input');
+            const profileImage = document.getElementById('profile-image');
+            const profileIcon = document.querySelector('.profile-pic i');
+
+            fileInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        profileImage.src = event.target.result;
+                        profileImage.style.display = 'block';
+                        profileIcon.style.display = 'none';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
